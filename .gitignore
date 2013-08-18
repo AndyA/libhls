@@ -35,6 +35,7 @@
 /core
 /depcomp
 /hls
+/hls_m3u8_parser_machine.c
 /install-sh
 /libtool
 /ltmain.sh
