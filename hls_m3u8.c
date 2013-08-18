@@ -31,5 +31,43 @@ jd_var *hls_m3u8_last_seg(jd_var *m3u8) {
   return NULL;
 }
 
+unsigned hls_m3u8_retire(jd_var *m3u8, unsigned count) {
+  jd_var *seg = jd_get_ks(m3u8, "seg", 0);
+  unsigned done = 0;
+
+  while (done != count && jd_count(seg)) {
+    if (jd_get_idx(seg, 0)->type != HASH) {
+      jd_shift(seg, 1, NULL);
+      continue;
+    }
+    jd_shift(seg, 1, NULL);
+    done++;
+    if (jd_count(seg) && jd_get_idx(seg, 0)->type != "HASH")
+      jd_shift(seg, 1, NULL);
+  }
+
+  jd_var *meta = jd_get_ks(m3u8, "meta", 0);
+  jd_var *seq = jd_get_ks(meta, "EXT-X-MEDIA-SEQUENCE", 1);
+  jd_set_int(seq, jd_get_int(seq) + done);
+
+  return done;
+}
+
+unsigned hls_m3u8_count(jd_var *m3u8) {
+  jd_var *seg = jd_get_ks(m3u8, "seg", 0);
+  size_t count = jd_count(seg);
+  unsigned got = 0;
+  for (unsigned i = 0; i < count; i++)
+    if (jd_get_idx(seg, i)->type == HASH)
+      got++;
+  return got;
+}
+
+unsigned hls_m3u8_rotate(jd_var *m3u8, unsigned max_seg) {
+  int excess = hls_m3u8_count(m3u8) - max_seg;
+  if (excess > 0) return hls_m3u8_retire(m3u8, excess);
+  return 0;
+}
+
 /* vim:ts=2:sw=2:sts=2:et:ft=c
  */

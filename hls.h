@@ -13,6 +13,9 @@ extern "C" {
 
   jd_var *hls_m3u8_init(jd_var *out);
   jd_var *hls_m3u8_last_seg(jd_var *m3u8);
+  unsigned hls_m3u8_retire(jd_var *m3u8, unsigned count);
+  unsigned hls_m3u8_count(jd_var *m3u8);
+  unsigned hls_m3u8_rotate(jd_var *m3u8, unsigned max_seg);
 
   jd_var *hls_m3u8_parse(jd_var *out, jd_var *m3u8);
   jd_var *hls_m3u8_format(jd_var *out, jd_var *m3u8);
