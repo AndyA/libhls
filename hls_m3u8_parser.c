@@ -6,8 +6,6 @@
 
 #include "hls.h"
 
-extern const char *hls__m3u8_parser_machine;
-
 #define SKIP(lp) while (*(lp) && isspace(*(lp))) (lp)++
 
 #define isattr(c) (((c) >= 'A' && (c) <= 'Z') || (c) == '-')
@@ -151,14 +149,16 @@ static void parse_lines(jd_var *out, jd_var *lines) {
           if (is(tag, "EXTINF")) {
             if (!seg) seg = jd_nhv(5);
             if (*lp++ != ':') jd_throw("Missing attributes after %V", tag);
+            jd_var *inf = jd_get_key(seg, tag, 1);
+            if (inf->type != HASH) jd_set_hash(inf, 2);
             char *comma = strchr(lp, ',');
             if (comma) {
-              jd_set_bytes(jd_get_ks(seg, "duration", 1), lp, comma - lp);
-              jd_set_string(jd_get_ks(seg, "title", 1), comma + 1);
+              jd_set_bytes(jd_get_ks(inf, "duration", 1), lp, comma - lp);
+              jd_set_string(jd_get_ks(inf, "title", 1), comma + 1);
             }
             else {
-              jd_set_string(jd_get_ks(seg, "duration", 1), lp);
-              jd_set_string(jd_get_ks(seg, "title", 1), "");
+              jd_set_string(jd_get_ks(inf, "duration", 1), lp);
+              jd_set_string(jd_get_ks(inf, "title", 1), "");
             }
             state = HLSSEG;
             break;
@@ -176,7 +176,7 @@ static void parse_lines(jd_var *out, jd_var *lines) {
             if (!seg) seg = jd_nhv(5);
             if (*lp++ != ':') jd_throw("Missing attributes after %V", tag);
             jd_var *br = jd_get_key(seg, tag, 1);
-            if (br-> type != HASH) jd_set_hash(br, 2);
+            if (br->type != HASH) jd_set_hash(br, 2);
             char *sep = strchr(lp, '@');
             if (sep) {
               jd_set_bytes(jd_get_ks(br, "length", 1), lp, sep - lp);

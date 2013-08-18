@@ -35,12 +35,13 @@
 /core
 /depcomp
 /hls
-/hls_m3u8_parser_machine.c
+/hls_m3u8_syntax.c
 /install-sh
 /libtool
 /ltmain.sh
 /missing
 /stamp-h*
+/syntax.json
 /tags
 /test.*
 /version.h

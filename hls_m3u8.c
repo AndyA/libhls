@@ -2,6 +2,15 @@
 
 #include "hls.h"
 
+extern const char *hls__m3u8_syntax;;
+
+jd_var *hls__get_syntax(jd_var *m3u8) {
+  jd_var *syntax = jd_get_ks(m3u8, "syntax", 1);
+  if (syntax->type == NULL)
+    jd_from_jsons(syntax, hls__m3u8_syntax);
+  return syntax;
+}
+
 jd_var *hls_m3u8_init(jd_var *out) {
   jd_set_hash(out, 4);
   jd_set_hash(jd_lv(out, "$.meta"), 10);

@@ -28,6 +28,8 @@ int main(int argc, char *argv[]) {
       jd_printf("file: %s\n", argv[i]);
       jd_var *m3u8 = hls_m3u8_parse(jd_nv(), load_file(jd_nv(), argv[i]));
       jd_printf("m3u8: %lJ\n", m3u8);
+      jd_var *rep = hls_m3u8_format(jd_nv(), m3u8);
+      jd_printf("%V", rep);
     }
   }
   return 0;

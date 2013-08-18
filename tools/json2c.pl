@@ -22,7 +22,7 @@ my $doc = $json->encode(
 print "const char *$O{name} =\n";
 while ( $doc =~ s/(.{1,60})// ) {
   ( my $ln = $1 ) =~ s/([\\\"])/\\$1/g;
-  print qq{  "$1"};
+  print qq{  "$ln"};
   print ';' unless length $doc;
   print "\n";
 }

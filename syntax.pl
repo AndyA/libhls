@@ -6,49 +6,49 @@ use warnings;
 use JSON;
 
 my $stminf = {
-  PROGRAM_ID => 'i',
-  AUDIO      => 'zqs',
-  VIDEO      => 'zqs',
-  SUBTITLES  => 'zqs',
-  CODECS     => 'zqs',
-  RESOLUTION => 'res',
+  'PROGRAM-ID' => 'i',
+  AUDIO        => 'zqs',
+  VIDEO        => 'zqs',
+  SUBTITLES    => 'zqs',
+  CODECS       => 'zqs',
+  RESOLUTION   => 'res',
 };
 
 my %spec = (
-  EXT_X_MEDIA_SEQUENCE => 'i',
-  EXT_X_TARGETDURATION => 'i',
-  EXT_X_VERSION        => 'i',
-  EXT_X_PLAYLIST_TYPE  => ['EVENT', 'VOD'],
-  EXT_X_ALLOW_CACHE    => ['YES', 'NO'],
-  EXT_X_MEDIA          => {
+  'EXT-X-MEDIA-SEQUENCE' => 'i',
+  'EXT-X-TARGETDURATION' => 'i',
+  'EXT-X-VERSION'        => 'i',
+  'EXT-X-PLAYLIST-TYPE'  => ['EVENT', 'VOD'],
+  'EXT-X-ALLOW-CACHE'    => ['YES', 'NO'],
+  'EXT-X-MEDIA'          => {
     require => {},
     allow   => {
-      URI      => 'zqs',
-      TYPE     => ['AUDIO', 'VIDEO', 'SUBTITLES'],
-      GROUP_ID => 'zqs',
-      LANGUAGE => 'zqs',
-      NAME     => 'zqs',
+      URI        => 'zqs',
+      TYPE       => ['AUDIO', 'VIDEO', 'SUBTITLES'],
+      'GROUP-ID' => 'zqs',
+      LANGUAGE   => 'zqs',
+      NAME       => 'zqs',
       DEFAULT         => ['YES', 'NO'],
       AUTOSELECT      => ['YES', 'NO'],
       FORCED          => ['YES', 'NO'],
       CHARACTERISTICS => 'zqs',
     },
   },
-  EXT_X_I_FRAME_STREAM_INF => {
+  'EXT-X-I-FRAME-STREAM-INF' => {
     require => {
       BANDWIDTH => 'i',
       URI       => 'zqs',
     },
     allow => $stminf,
   },
-  EXT_X_STREAM_INF => {
+  'EXT-X-STREAM-INF' => {
     require => { BANDWIDTH => 'i', },
     allow   => $stminf,
   },
-  EXT_X_BYTERANGE         => 'br',
-  EXTINF                  => 'extinf',
-  EXT_X_PROGRAM_DATE_TIME => 'bs',
-  EXT_X_I_FRAMES_ONLY     => [],
+  'EXT-X-BYTERANGE'         => 'br',
+  EXTINF                    => 'extinf',
+  'EXT-X-PROGRAM-DATE-TIME' => 'bs',
+  'EXT-X-I-FRAMES-ONLY'     => [],
 );
 
 print JSON->new->pretty->canonical->encode( \%spec );
