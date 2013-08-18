@@ -1,6 +1,7 @@
 /* hls_m3u8_parser.c */
 
 #include <ctype.h>
+#include <string.h>
 #include <jd_pretty.h>
 
 #include "hls.h"
@@ -24,8 +25,9 @@ static jd_var *parse_string(jd_var *out, const char **lp) {
   return jd_from_json(out, jd_set_bytes(jd_nv(), sp, *lp - sp));
 }
 
-static jd_var *parse_attr(jd_var *out, const char *lp) {
+static jd_var *parse_attr(jd_var *out, const char *linep) {
   jd_set_hash(out, 10);
+  const char *lp = linep; /* avoid longjmp clobber warning */
 
   scope {
     for (;;) {
@@ -65,6 +67,17 @@ static int is(jd_var *v, const char *s) {
   return 0 == strcmp(jd_bytes(v, NULL), s);
 }
 
+static jd_int last_offset(jd_var *out) {
+  jd_var *ls = hls_m3u8_last_seg(out);
+  if (!ls) jd_throw("No offset, no previous segment");
+  jd_var *lbr = jd_get_ks(ls, "EXT-X-BYTERANGE", 0);
+  if (!lbr) jd_throw("Previous segment isn't a byte range");
+  jd_var *lbro = jd_get_ks(lbr, "offset", 0);
+  jd_var *lbrl = jd_get_ks(lbr, "length", 0);
+  if (!lbro || !lbrl) jd_throw("Previous segment missing offset or length");
+  return jd_get_int(lbro) + jd_get_int(lbrl);
+}
+
 static void parse_lines(jd_var *out, jd_var *lines) {
   enum { INIT, HLS, HLSSEG, HLSPL, IGNORE } state = INIT;
 
@@ -82,7 +95,6 @@ static void parse_lines(jd_var *out, jd_var *lines) {
         if (!isattr(*lp)) jd_throw("Bad attribute name");
         while (*lp && istag(*lp)) lp++;
         jd_var *tag = jd_set_bytes(jd_nv(), tp, lp - tp);
-        jd_printf("tag: %V\n", tag);
         switch (state) {
         case INIT:
           if (is(tag, "EXTM3U"))
@@ -153,14 +165,34 @@ static void parse_lines(jd_var *out, jd_var *lines) {
           }
 
           if (is(tag, "EXT-X-PROGRAM-DATE-TIME")) {
+            if (!seg) seg = jd_nhv(5);
+            if (*lp++ != ':') jd_throw("Missing attributes after %V", tag);
+            jd_set_string(jd_get_key(seg, tag, 1), lp);
+            state = HLSSEG;
             break;
           }
 
           if (is(tag, "EXT-X-BYTERANGE")) {
+            if (!seg) seg = jd_nhv(5);
+            if (*lp++ != ':') jd_throw("Missing attributes after %V", tag);
+            jd_var *br = jd_get_key(seg, tag, 1);
+            if (br-> type != HASH) jd_set_hash(br, 2);
+            char *sep = strchr(lp, '@');
+            if (sep) {
+              jd_set_bytes(jd_get_ks(br, "length", 1), lp, sep - lp);
+              jd_set_string(jd_get_ks(br, "offset", 1), sep + 1);
+            }
+            else {
+              jd_set_string(jd_get_ks(br, "length", 1), lp);
+              jd_set_int(jd_get_ks(br, "offset", 1), last_offset(out));
+            }
+            state = HLSSEG;
             break;
           }
+          jd_throw("Unknown tag: %V", tag);
           break;
         case HLSPL:
+          jd_throw("Unknown tag: %V", tag);
           break;
         case IGNORE:
           break;

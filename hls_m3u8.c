@@ -11,5 +11,16 @@ jd_var *hls_m3u8_init(jd_var *out) {
   return out;
 }
 
+jd_var *hls_m3u8_last_seg(jd_var *m3u8) {
+  jd_var *seg = jd_get_ks(m3u8, "seg", 0);
+  if (!seg) return NULL;
+  unsigned pos = jd_count(seg);
+  while (pos > 0) {
+    jd_var *s = jd_get_idx(seg, --pos);
+    if (s->type == HASH) return s;
+  }
+  return NULL;
+}
+
 /* vim:ts=2:sw=2:sts=2:et:ft=c
  */
