@@ -19,12 +19,22 @@ static jd_var *get_array(jd_var *m3u8, const char *name) {
   return ar;
 }
 
+static jd_var *get_hash(jd_var *m3u8, const char *name) {
+  jd_var *ar = jd_get_ks(m3u8, name, 1);
+  if (ar->type != HASH) jd_set_hash(ar, 10);
+  return ar;
+}
+
 jd_var *hls_m3u8_seg(jd_var *m3u8) {
   return get_array(m3u8, "seg");
 }
 
 jd_var *hls_m3u8_vpl(jd_var *m3u8) {
   return get_array(m3u8, "vpl");
+}
+
+jd_var *hls_m3u8_meta(jd_var *m3u8) {
+  return get_hash(m3u8, "meta");
 }
 
 jd_var *hls_m3u8_init(jd_var *out) {
@@ -134,6 +144,13 @@ unsigned hls_m3u8_expire(jd_var *m3u8, double min_duration) {
   unsigned pos = duration_span(m3u8, &min_duration);
   unsigned count = count_to(m3u8, pos);
   return hls_m3u8_retire(m3u8, count);
+}
+
+int hls_m3u8_set_closed(jd_var *m3u8, int closed) {
+  jd_var *cl = jd_get_ks(m3u8, "closed", 1);
+  int prev = jd_get_int(cl);
+  jd_set_bool(cl, closed);
+  return prev;
 }
 
 /* vim:ts=2:sw=2:sts=2:et:ft=c

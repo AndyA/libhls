@@ -15,17 +15,22 @@ extern "C" {
 
   jd_var *hls_m3u8_seg(jd_var *m3u8);
   jd_var *hls_m3u8_vpl(jd_var *m3u8);
+  jd_var *hls_m3u8_meta(jd_var *m3u8);
 
   jd_var *hls_m3u8_last_seg(jd_var *m3u8);
   unsigned hls_m3u8_retire(jd_var *m3u8, unsigned count);
   unsigned hls_m3u8_count(jd_var *m3u8);
   unsigned hls_m3u8_rotate(jd_var *m3u8, unsigned max_seg);
+  unsigned hls_m3u8_expire(jd_var *m3u8, double min_duration);
+
+  int hls_m3u8_set_closed(jd_var *m3u8, int closed);
 
   int hls_m3u8_push_playlist(jd_var *m3u8, jd_var *pl);
   int hls_m3u8_push_segment(jd_var *m3u8, jd_var *frag);
   int hls_m3u8_push_discontinuity(jd_var *m3u8);
 
   double hls_m3u8_duration(jd_var *m3u8);
+  unsigned hls_m3u8_expire(jd_var *m3u8, double min_duration);
 
   jd_var *hls_m3u8_parse(jd_var *out, jd_var *m3u8);
   jd_var *hls_m3u8_format(jd_var *out, jd_var *m3u8);
