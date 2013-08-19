@@ -140,7 +140,7 @@ static void parse_lines(jd_var *out, jd_var *lines) {
           }
 
           if (is(tag, "EXT-X-DISCONTINUITY")) {
-            jd_assign(jd_push(jd_get_ks(out, "seg", 1), 1), tag);
+            hls_m3u8_push_discontinuity(out);
             break;
           }
 
@@ -206,7 +206,10 @@ static void parse_lines(jd_var *out, jd_var *lines) {
         case HLSPL:
           if (!seg) seg = jd_nhv(5);
           jd_set_string(jd_get_ks(seg, "uri", 1), lp);
-          jd_assign(jd_push(jd_get_ks(out, state == HLSSEG ? "seg" : "vpl", 1), 1), seg);
+          if (state == HLSSEG)
+            hls_m3u8_push_segment(out, seg);
+          else
+            hls_m3u8_push_playlist(out, seg);
           seg = NULL;
           state = HLS;
           break;

@@ -6,6 +6,8 @@
 #include "jd_test.h"
 #include "jd_pretty.h"
 
+#include "../hls.h"
+
 struct {
   const char *in, *out;
 } tests[] = {

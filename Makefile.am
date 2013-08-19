@@ -27,5 +27,5 @@ test: all
 	cd t && $(MAKE) test
 
 clean-local:
-	hls_m3u8_syntax.c
+	rm -f hls_m3u8_syntax.c
 
