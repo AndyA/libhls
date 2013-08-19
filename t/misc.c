@@ -57,6 +57,9 @@ void test_push(void) {
     hls_m3u8_rotate(m3u8, 50);
     ok(jd_get_idx(hls_m3u8_seg(m3u8), 0)->type == HASH, "no initial discontinuity");
     ok(hls_m3u8_count(m3u8) == 50, "50 items after rotate");
+    jd_int retired = jd_count(hls_m3u8_retired(m3u8));
+    if (!ok(retired == 15, "retired 15"))
+      diag("retired = %ld", retired);
     ok(get_sequence(m3u8) == 50, "sequence is 50");
     /*    jd_fprintf(stderr, "%V", hls_m3u8_format(jd_nv(), m3u8));*/
   }

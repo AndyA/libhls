@@ -37,6 +37,10 @@ jd_var *hls_m3u8_meta(jd_var *m3u8) {
   return get_hash(m3u8, "meta");
 }
 
+jd_var *hls_m3u8_retired(jd_var *m3u8) {
+  return get_array(m3u8, "retired");
+}
+
 jd_var *hls_m3u8_init(jd_var *out) {
   jd_set_hash(out, 4);
   jd_set_hash(jd_lv(out, "$.meta"), 10);
@@ -59,26 +63,28 @@ jd_var *hls_m3u8_last_seg(jd_var *m3u8) {
   return NULL;
 }
 
-unsigned hls_m3u8_retire(jd_var *m3u8, unsigned count) {
+unsigned hls_m3u8_retire(jd_var *m3u8, unsigned num) {
   jd_var *seg = hls_m3u8_seg(m3u8);
-  unsigned done = 0;
+  jd_var *retired = hls_m3u8_retired(m3u8);
 
-  while (done != count && jd_count(seg)) {
-    if (IS_DISCONTINUITY(jd_get_idx(seg, 0))) {
-      jd_shift(seg, 1, NULL);
-      continue;
+  size_t count = jd_count(seg);
+  unsigned pos, todo = num;
+
+  for (pos = 0; pos < count; pos++) {
+    if (IS_SEGMENT(jd_get_idx(seg, pos))) {
+      if (todo == 0) break;
+      todo--;
     }
-    jd_shift(seg, 1, NULL);
-    done++;
-    if (jd_count(seg) && IS_DISCONTINUITY(jd_get_idx(seg, 0)))
-      jd_shift(seg, 1, NULL);
   }
+
+  jd_set_array(retired, pos);
+  jd_shift(seg, pos, jd_push(retired, pos));
 
   jd_var *meta = jd_get_ks(m3u8, "meta", 0);
   jd_var *seq = jd_get_ks(meta, "EXT-X-MEDIA-SEQUENCE", 1);
-  jd_set_int(seq, jd_get_int(seq) + done);
+  jd_set_int(seq, jd_get_int(seq) + num - todo);
 
-  return done;
+  return num;
 }
 
 static unsigned count_to(jd_var *m3u8, unsigned count) {

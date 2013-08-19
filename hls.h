@@ -16,6 +16,7 @@ extern "C" {
   jd_var *hls_m3u8_seg(jd_var *m3u8);
   jd_var *hls_m3u8_vpl(jd_var *m3u8);
   jd_var *hls_m3u8_meta(jd_var *m3u8);
+  jd_var *hls_m3u8_retired(jd_var *m3u8);
 
   jd_var *hls_m3u8_last_seg(jd_var *m3u8);
   unsigned hls_m3u8_retire(jd_var *m3u8, unsigned count);
