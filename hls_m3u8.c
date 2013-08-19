@@ -149,7 +149,7 @@ unsigned hls_m3u8_expire(jd_var *m3u8, double min_duration) {
 int hls_m3u8_set_closed(jd_var *m3u8, int closed) {
   jd_var *cl = jd_get_ks(m3u8, "closed", 1);
   int prev = jd_get_int(cl);
-  jd_set_bool(cl, closed);
+  if (closed >= 0) jd_set_bool(cl, closed);
   return prev;
 }
 
