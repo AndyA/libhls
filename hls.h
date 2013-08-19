@@ -30,6 +30,9 @@ extern "C" {
   jd_var *hls_m3u8_parse(jd_var *out, jd_var *m3u8);
   jd_var *hls_m3u8_format(jd_var *out, jd_var *m3u8);
 
+  jd_var *hls_m3u8_load(jd_var *m3u8, const char *filename);
+  jd_var *hls_m3u8_save(jd_var *m3u8, const char *filename);
+
 #ifdef __cplusplus
 }
 #endif

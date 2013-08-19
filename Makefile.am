@@ -11,6 +11,7 @@ bin_PROGRAMS = hls
 libhls_la_SOURCES = \
 	hls_m3u8.c \
 	hls_m3u8_formatter.c \
+	hls_m3u8_io.c \
 	hls_m3u8_parser.c \
 	hls_m3u8_syntax.c \
 	hls.h
