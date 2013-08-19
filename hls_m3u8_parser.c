@@ -216,6 +216,7 @@ static void parse_lines(jd_var *out, jd_var *lines) {
         }
       }
     }
+    if (state == INIT) jd_throw("No valid input found");
   }
 }
 
