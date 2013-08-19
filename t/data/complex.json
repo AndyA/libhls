@@ -1,0 +1,205 @@
+{
+  "closed": false,
+  "meta": {
+    "EXT-X-I-FRAME-STREAM-INF": [
+      {
+        "BANDWIDTH": "28451",
+        "CODECS": "avc1.4d400d",
+        "PROGRAM-ID": "1",
+        "URI": "gear1/iframe_index.m3u8"
+      },
+      {
+        "BANDWIDTH": "181534",
+        "CODECS": "avc1.4d401e",
+        "PROGRAM-ID": "1",
+        "URI": "gear2/iframe_index.m3u8"
+      },
+      {
+        "BANDWIDTH": "297056",
+        "CODECS": "avc1.4d401f",
+        "PROGRAM-ID": "1",
+        "URI": "gear3/iframe_index.m3u8"
+      },
+      {
+        "BANDWIDTH": "339492",
+        "CODECS": "avc1.4d401f",
+        "PROGRAM-ID": "1",
+        "URI": "gear4/iframe_index.m3u8"
+      },
+      {
+        "BANDWIDTH": "669554",
+        "CODECS": "avc1.4d401f",
+        "PROGRAM-ID": "1",
+        "URI": "gear5/iframe_index.m3u8"
+      }
+    ],
+    "EXT-X-MEDIA": [
+      {
+        "AUTOSELECT": "YES",
+        "DEFAULT": "YES",
+        "GROUP-ID": "bipbop_audio",
+        "LANGUAGE": "eng",
+        "NAME": "BipBop Audio 1",
+        "TYPE": "AUDIO"
+      },
+      {
+        "AUTOSELECT": "NO",
+        "DEFAULT": "NO",
+        "GROUP-ID": "bipbop_audio",
+        "LANGUAGE": "eng",
+        "NAME": "BipBop Audio 2",
+        "TYPE": "AUDIO",
+        "URI": "alternate_audio_aac/prog_index.m3u8"
+      },
+      {
+        "AUTOSELECT": "YES",
+        "DEFAULT": "YES",
+        "FORCED": "NO",
+        "GROUP-ID": "subs",
+        "LANGUAGE": "eng",
+        "NAME": "English",
+        "TYPE": "SUBTITLES",
+        "URI": "subtitles/eng/prog_index.m3u8"
+      },
+      {
+        "AUTOSELECT": "NO",
+        "DEFAULT": "YES",
+        "FORCED": "YES",
+        "GROUP-ID": "subs",
+        "LANGUAGE": "eng",
+        "NAME": "English (Forced)",
+        "TYPE": "SUBTITLES",
+        "URI": "subtitles/eng_forced/prog_index.m3u8"
+      },
+      {
+        "AUTOSELECT": "YES",
+        "DEFAULT": "YES",
+        "FORCED": "NO",
+        "GROUP-ID": "subs",
+        "LANGUAGE": "fra",
+        "NAME": "Français",
+        "TYPE": "SUBTITLES",
+        "URI": "subtitles/fra/prog_index.m3u8"
+      },
+      {
+        "AUTOSELECT": "NO",
+        "DEFAULT": "YES",
+        "FORCED": "YES",
+        "GROUP-ID": "subs",
+        "LANGUAGE": "fra",
+        "NAME": "Français (Forced)",
+        "TYPE": "SUBTITLES",
+        "URI": "subtitles/fra_forced/prog_index.m3u8"
+      },
+      {
+        "AUTOSELECT": "YES",
+        "DEFAULT": "YES",
+        "FORCED": "NO",
+        "GROUP-ID": "subs",
+        "LANGUAGE": "spa",
+        "NAME": "Español",
+        "TYPE": "SUBTITLES",
+        "URI": "subtitles/spa/prog_index.m3u8"
+      },
+      {
+        "AUTOSELECT": "NO",
+        "DEFAULT": "YES",
+        "FORCED": "YES",
+        "GROUP-ID": "subs",
+        "LANGUAGE": "spa",
+        "NAME": "Español (Forced)",
+        "TYPE": "SUBTITLES",
+        "URI": "subtitles/spa_forced/prog_index.m3u8"
+      },
+      {
+        "AUTOSELECT": "YES",
+        "DEFAULT": "YES",
+        "FORCED": "NO",
+        "GROUP-ID": "subs",
+        "LANGUAGE": "jpn",
+        "NAME": "日本人",
+        "TYPE": "SUBTITLES",
+        "URI": "subtitles/jpn/prog_index.m3u8"
+      },
+      {
+        "AUTOSELECT": "NO",
+        "DEFAULT": "YES",
+        "FORCED": "YES",
+        "GROUP-ID": "subs",
+        "LANGUAGE": "jpn",
+        "NAME": "日本人 (Forced)",
+        "TYPE": "SUBTITLES",
+        "URI": "subtitles/jpn_forced/prog_index.m3u8"
+      }
+    ]
+  },
+  "seg": [
+  ],
+  "vpl": [
+    {
+      "EXT-X-STREAM-INF": {
+        "AUDIO": "bipbop_audio",
+        "BANDWIDTH": "263851",
+        "CODECS": "mp4a.40.2, avc1.4d400d",
+        "PROGRAM-ID": "1",
+        "RESOLUTION": "416x234",
+        "SUBTITLES": "subs"
+      },
+      "uri": "gear1/prog_index.m3u8"
+    },
+    {
+      "EXT-X-STREAM-INF": {
+        "AUDIO": "bipbop_audio",
+        "BANDWIDTH": "577610",
+        "CODECS": "mp4a.40.2, avc1.4d401e",
+        "PROGRAM-ID": "1",
+        "RESOLUTION": "640x360",
+        "SUBTITLES": "subs"
+      },
+      "uri": "gear2/prog_index.m3u8"
+    },
+    {
+      "EXT-X-STREAM-INF": {
+        "AUDIO": "bipbop_audio",
+        "BANDWIDTH": "915905",
+        "CODECS": "mp4a.40.2, avc1.4d401f",
+        "PROGRAM-ID": "1",
+        "RESOLUTION": "960x540",
+        "SUBTITLES": "subs"
+      },
+      "uri": "gear3/prog_index.m3u8"
+    },
+    {
+      "EXT-X-STREAM-INF": {
+        "AUDIO": "bipbop_audio",
+        "BANDWIDTH": "1030138",
+        "CODECS": "mp4a.40.2, avc1.4d401f",
+        "PROGRAM-ID": "1",
+        "RESOLUTION": "1280x720",
+        "SUBTITLES": "subs"
+      },
+      "uri": "gear4/prog_index.m3u8"
+    },
+    {
+      "EXT-X-STREAM-INF": {
+        "AUDIO": "bipbop_audio",
+        "BANDWIDTH": "1924009",
+        "CODECS": "mp4a.40.2, avc1.4d401f",
+        "PROGRAM-ID": "1",
+        "RESOLUTION": "1920x1080",
+        "SUBTITLES": "subs"
+      },
+      "uri": "gear5/prog_index.m3u8"
+    },
+    {
+      "EXT-X-STREAM-INF": {
+        "AUDIO": "bipbop_audio",
+        "BANDWIDTH": "41457",
+        "CODECS": "mp4a.40.2",
+        "PROGRAM-ID": "1",
+        "SUBTITLES": "subs"
+      },
+      "uri": "gear0/prog_index.m3u8"
+    }
+  ]
+}

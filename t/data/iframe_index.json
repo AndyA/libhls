@@ -1,0 +1,58 @@
+{
+  "closed": true,
+  "meta": {
+    "EXT-X-I-FRAMES-ONLY": true,
+    "EXT-X-MEDIA-SEQUENCE": "0",
+    "EXT-X-PLAYLIST-TYPE": "VOD",
+    "EXT-X-TARGETDURATION": "10",
+    "EXT-X-VERSION": "4"
+  },
+  "seg": [
+    {
+      "EXT-X-BYTERANGE": {
+        "length": "53016",
+        "offset": "564"
+      },
+      "EXTINF": {
+        "duration": "3.003",
+        "title": ""
+      },
+      "uri": "main.ts"
+    },
+    {
+      "EXT-X-BYTERANGE": {
+        "length": "37788",
+        "offset": "322608"
+      },
+      "EXTINF": {
+        "duration": "3.003",
+        "title": ""
+      },
+      "uri": "main.ts"
+    },
+    {
+      "EXT-X-BYTERANGE": {
+        "length": "53016",
+        "offset": "631304"
+      },
+      "EXTINF": {
+        "duration": "3.003",
+        "title": ""
+      },
+      "uri": "main.ts"
+    },
+    {
+      "EXT-X-BYTERANGE": {
+        "length": "37788",
+        "offset": "954476"
+      },
+      "EXTINF": {
+        "duration": "3.003",
+        "title": ""
+      },
+      "uri": "main.ts"
+    }
+  ],
+  "vpl": [
+  ]
+}

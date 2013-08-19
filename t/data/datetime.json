@@ -1,0 +1,38 @@
+{
+  "closed": false,
+  "meta": {
+  },
+  "seg": [
+    {
+      "EXT-X-PROGRAM-DATE-TIME": "2010-02-19T14:54:23.031+08:00",
+      "EXTINF": {
+        "duration": "9.9767",
+        "title": ""
+      },
+      "uri": "fileSequence0.ts"
+    },
+    {
+      "EXTINF": {
+        "duration": "9.9433",
+        "title": ""
+      },
+      "uri": "fileSequence1.ts"
+    },
+    {
+      "EXTINF": {
+        "duration": "10.01",
+        "title": ""
+      },
+      "uri": "fileSequence2.ts"
+    },
+    {
+      "EXTINF": {
+        "duration": "9.9433",
+        "title": ""
+      },
+      "uri": "fileSequence3.ts"
+    }
+  ],
+  "vpl": [
+  ]
+}

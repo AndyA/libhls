@@ -1,0 +1,53 @@
+{
+  "closed": true,
+  "meta": {
+  },
+  "seg": [
+    {
+      "EXT-X-BYTERANGE": {
+        "length": "12893",
+        "offset": "0"
+      },
+      "EXTINF": {
+        "duration": "9.9767",
+        "title": ""
+      },
+      "uri": "fileSequence0.ts"
+    },
+    {
+      "EXT-X-BYTERANGE": {
+        "length": "12215",
+        "offset": 12893
+      },
+      "EXTINF": {
+        "duration": "9.9433",
+        "title": ""
+      },
+      "uri": "fileSequence0.ts"
+    },
+    {
+      "EXT-X-BYTERANGE": {
+        "length": "13923",
+        "offset": 25108
+      },
+      "EXTINF": {
+        "duration": "10.01",
+        "title": ""
+      },
+      "uri": "fileSequence0.ts"
+    },
+    {
+      "EXT-X-BYTERANGE": {
+        "length": "12124",
+        "offset": 39031
+      },
+      "EXTINF": {
+        "duration": "9.9433",
+        "title": ""
+      },
+      "uri": "fileSequence0.ts"
+    }
+  ],
+  "vpl": [
+  ]
+}

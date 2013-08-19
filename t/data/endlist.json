@@ -1,0 +1,23 @@
+{
+  "closed": true,
+  "meta": {
+  },
+  "seg": [
+    {
+      "EXTINF": {
+        "duration": "9.9767",
+        "title": ""
+      },
+      "uri": "fileSequence0.ts"
+    },
+    {
+      "EXTINF": {
+        "duration": "9.9433",
+        "title": ""
+      },
+      "uri": "fileSequence1.ts"
+    }
+  ],
+  "vpl": [
+  ]
+}
