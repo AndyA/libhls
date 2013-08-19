@@ -1,4 +1,4 @@
-TESTBIN = basic 
+TESTBIN = basic formatter parser
 
 TESTPERL = basic.t
 

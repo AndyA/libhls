@@ -3,5 +3,7 @@
 /*.o
 /basic
 /core
+/formatter
+/parser
 /tags
 /wrap
