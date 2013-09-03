@@ -122,7 +122,7 @@ static void format_record(jd_var *lb, jd_var *syn, jd_var *rec, jd_var *order) {
     jd_delete_ks(rv, "uri", uri);
 
     jd_var *keys = jd_sort(jd_keys(jd_nv(), rv));
-    if (order) keys = jd_append(order, keys);
+    if (order) keys = jd_append(jd_clone(jd_nv(), order, 0), keys);
     size_t count = jd_count(keys);
 
     for (unsigned i = 0; i < count; i++) {
