@@ -1,0 +1,28 @@
+AC_INIT([libhls],[m4_esyscmd(sh tools/get-version.sh)])
+
+AC_CONFIG_MACRO_DIR([m4])
+
+AM_INIT_AUTOMAKE([-Wall -Werror foreign])
+AM_MAINTAINER_MODE
+
+AC_CONFIG_HEADER([config.h])
+
+BT_PROG_XCODE
+AC_PROG_CC([clang gcc c99 cc])
+AC_PROG_CC_C99
+AM_PROG_AR
+
+LT_INIT
+
+AC_SYS_LARGEFILE
+BT_REQUIRE_LIBJSONDATA
+BT_REQUIRE_PTHREAD
+BT_PROG_CC_WARN
+
+AC_CONFIG_FILES([
+Makefile
+m4/Makefile
+t/Makefile
+])
+
+AC_OUTPUT

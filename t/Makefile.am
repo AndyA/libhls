@@ -13,6 +13,3 @@ LDADD = libtest-support.la ../libhls.la
 
 test: $(TESTBIN)
 	prove -e ./wrap $(TESTBIN) $(TESTPERL)
-
-valgrind: $(TESTBIN)
-	prove -e 'valgrind -q' $(addprefix ./,$(TESTBIN))

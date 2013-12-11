@@ -2,6 +2,8 @@ DIST_SUBDIRS = t
 
 SUBDIRS = . t
 
+ACLOCAL_AMFLAGS = -I m4
+
 lib_LTLIBRARIES = libhls.la
 
 include_HEADERS = hls.h

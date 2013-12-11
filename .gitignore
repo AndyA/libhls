@@ -23,7 +23,9 @@
 /.build/
 /Session.vim
 /TAGS
+/ar-lib
 /autom4te.cache
+/compile
 /config.cache
 /config.guess
 /config.h
